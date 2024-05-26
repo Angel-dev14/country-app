@@ -18,12 +18,12 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 })
 export class CountryListComponent implements OnInit {
 
-  private readonly countryService = inject(CountryService);
+  private readonly _countryService = inject(CountryService);
   protected readonly loading = signal(true);
   countries: CountryResponse[] = [];
 
   ngOnInit(): void {
-    this.countryService.findAllCountries().pipe(
+    this._countryService.findAllCountries().pipe(
 
     ).subscribe({
       next: (countries) => {
@@ -31,10 +31,6 @@ export class CountryListComponent implements OnInit {
         this.loading.set(false);
       }
     });
-  }
-
-  allCountries$() {
-    return this.countryService.findAllCountries();
   }
 
 }
