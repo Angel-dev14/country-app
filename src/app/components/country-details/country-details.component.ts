@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CountryDetailsResponse } from '../../domain/country-details.response';
 import { CountryService } from '../../services/country.service';
 import { CommonModule } from '@angular/common';
@@ -19,6 +19,7 @@ import { HasRoleDirective } from '../../directives/has-role.directive';
     MatProgressSpinner,
     MatButton,
     HasRoleDirective,
+    RouterLink
   ],
   templateUrl: './country-details.component.html',
   styleUrl: './country-details.component.scss',

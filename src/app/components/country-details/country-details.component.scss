@@ -136,6 +136,13 @@ mat-card {
   transform: translate(-50%, -120%);
 }
 
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px;
+}
+
 .admin-actions {
   display: flex;
   justify-content: end;

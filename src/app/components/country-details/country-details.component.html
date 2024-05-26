@@ -31,11 +31,16 @@
       </div>
     </div>
     <div class='details-main-panel'>
-      <div class='admin-actions'
-          *appHasRole='"ADMIN"'
-      >
-        <button mat-raised-button color='accent'>Edit</button>
-        <button mat-raised-button color='warn'>Delete</button>
+      <div class='actions'>
+        <div>
+          <button mat-raised-button routerLink='../'>Back</button>
+        </div>
+        <div class='admin-actions'
+             *appHasRole='"ADMIN"'
+        >
+          <button mat-raised-button color='accent'>Edit</button>
+          <button mat-raised-button color='warn'>Delete</button>
+        </div>
       </div>
       <div class='additional-info'>
         <h2>Additional Information</h2>
