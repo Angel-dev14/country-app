@@ -1,27 +1,41 @@
-# CountryApp
+# Country App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.3.
+This application provides a detailed view of country information, including flags 
+It is created using Angular for the frontend and uses public counties api to fetch data about countries.
 
-## Development server
+## Note:
+This application is only a demo, and does not contain all functionalities! But it is a good showcase of my front-end skills.
+This was done with plain css, to show my proficiency in css.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Cloning the Project
 
-## Code scaffolding
+To clone the project, follow these instructions:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+git clone https://github.com/Angel-dev14/country-app.git
+cd country-app
+npm install
+ng serve -o
+```
+The application will open on localhost:4200
 
-## Build
+## Login Page
+This application provides a login page, you can login as two types of hardcoded users:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```angular2html
+1. Admin (username: Admin, password: admin)
+2. Operator (username: Operator, password: operator)
+```
 
-## Running unit tests
+When logged in as admin, when you navigate to a detailed view, you can see two buttons,
+edit and delete, these buttons are only available to Admin Role
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## All Countries Page
+View all countries and simple details like name, capital city, population & currency
 
-## Running end-to-end tests
+## Detailed Countries Page
+Clicking on a country card, you are navigated to the details country page
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Author
+Angel Petrushevski
+2024-05-26
