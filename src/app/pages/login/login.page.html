@@ -1,0 +1,49 @@
+<div class='login-wrapper'>
+  <div>
+    <h1 class='login-title'>
+      Welcome to Country App
+    </h1>
+  </div>
+  <form
+    [formGroup]='form'
+    (ngSubmit)='onSubmit()'>
+    <div>
+      <mat-form-field>
+        <mat-label>Enter your username</mat-label>
+        <input
+          matInput
+          name='username'
+          id='username'
+          formControlName='username'
+        >
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName='password'
+        >
+        <button mat-icon-button matSuffix (click)='hide = !hide'>
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div>
+      <button
+        [disabled]='form.invalid'
+        mat-raised-button
+        color='primary'
+        class='login-btn'
+        type='submit'
+      >
+        Login
+      </button>
+    </div>
+    @if (showLoginUnsucessfulMessage) {
+      <small class='danger'>Login Unsuccessful</small>
+    }
+  </form>
+</div>

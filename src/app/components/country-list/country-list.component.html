@@ -1,0 +1,11 @@
+@if (loading()) {
+  <div class='spinner'>
+    <mat-spinner></mat-spinner>
+  </div>
+}
+
+@for (country of countries; track country.cca2) {
+  <app-country-card
+    [country]='country'
+  ></app-country-card>
+}

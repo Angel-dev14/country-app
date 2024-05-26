@@ -1,0 +1,101 @@
+@if (countryDetails) {
+  <div class='details-container'>
+    <div class='details-sidebar'>
+      <div class='flag'>
+        <img [src]='countryDetails.flags.png' [alt]='countryDetails.flags.alt'>
+      </div>
+      <div class='details'>
+        <h1>{{ countryDetails.name.official }}</h1>
+        <h2>{{ countryDetails.name.common }}</h2>
+        <h2 matTooltip='capital city'>{{ countryDetails.capital[0] }}</h2>
+        <p>Independent: <span>{{ countryDetails.independent ? 'Yes' : 'No' }}</span></p>
+        <p>Status: <span>{{ countryDetails.status }}</span></p>
+        <p>UN Member: <span>{{ countryDetails.unMember ? 'Yes' : 'No' }}</span></p>
+        <p>Currencies:</p>
+        <ul>
+          <li *ngFor='let currency of countryDetails.currencies | keyvalue'>
+          <span class='currency' matTooltip='{{ currency.value.name }}'>
+            {{ currency.value.name }} - {{ currency.value.symbol }}
+          </span>
+          </li>
+        </ul>
+        <p>Region: <span>{{ countryDetails.region }}</span></p>
+        <p>Subregion: <span>{{ countryDetails.subregion }}</span></p>
+        <p>Languages:</p>
+        <ul>
+          <li *ngFor='let lang of countryDetails.languages | keyvalue'>
+            {{ lang.value }}
+          </li>
+        </ul>
+        <p>Landlocked: <span>{{ countryDetails.landlocked ? 'Yes' : 'No' }}</span></p>
+      </div>
+    </div>
+    <div class='details-main-panel'>
+      <div class='admin-actions'
+          *appHasRole='"ADMIN"'
+      >
+        <button mat-raised-button color='accent'>Edit</button>
+        <button mat-raised-button color='warn'>Delete</button>
+      </div>
+      <div class='additional-info'>
+        <h2>Additional Information</h2>
+        @if (countryDetails.postalCode) {
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Postal Code</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Format: {{ countryDetails.postalCode.format }}</p>
+              <p>Regex: {{ countryDetails.postalCode.regex }}</p>
+            </mat-card-content>
+          </mat-card>
+        }
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Start of Week</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ countryDetails.startOfWeek }}</p>
+          </mat-card-content>
+        </mat-card>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Capital Info</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Latitude: {{ countryDetails.capitalInfo.latlng[0] }}</p>
+            <p>Longitude: {{ countryDetails.capitalInfo.latlng[1] }}</p>
+          </mat-card-content>
+        </mat-card>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Coat of Arms</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <img class='card-img' [src]='countryDetails.coatOfArms.png' alt='Coat of Arms'>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class='translations'>
+        <h2>Translations</h2>
+        <div *ngFor='let translation of countryDetails.translations | keyvalue' class='translation-card'>
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>{{ translation.key }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p><strong>Official:</strong> {{ translation.value.official }}</p>
+              <p><strong>Common:</strong> {{ translation.value.common }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+} @else if (loader()) {
+  <div class='spinner'>
+    <mat-spinner></mat-spinner>
+  </div>
+} @else {
+  <p>There is no data information</p>
+}

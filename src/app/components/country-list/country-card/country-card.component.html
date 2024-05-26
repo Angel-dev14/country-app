@@ -1,0 +1,28 @@
+<div class='country-card' (click)='navigateCountryDetails()'>
+  <div class='country-card-header'>
+    <img class='flag-img' [src]='country.flags.svg' [alt]='country.flags.alt'>
+    <div class='header-item'>
+      @for (currency of country.currencies | keyvalue; track country.cca2) {
+        <span class='currency' [matTooltip]='currency.value.name'>
+          {{ currency.value.symbol }}
+        </span>
+      }
+    </div>
+  </div>
+  <div class='country-card-content'>
+    <div class='card-content-section'>
+      <p class='title'>COUNTRY</p>
+      <p class='sub-title official-name'>{{ country.name.official }}</p>
+    </div>
+    <div class='divider'></div>
+    <div class='card-content-section'>
+      <p class='title'>CAPITAL</p>
+      <p class='sub-title capital'>{{ country.capital[0] }}</p>
+    </div>
+    <div class='divider'></div>
+    <div class='card-content-section'>
+      <p class='title'>POPULATION</p>
+      <p class='sub-title population'>{{ country.population | number }}</p>
+    </div>
+  </div>
+</div>

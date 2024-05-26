@@ -1,0 +1,144 @@
+.details-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 16px;
+  padding: 16px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.details-sidebar {
+  flex: 1;
+  max-width: 400px;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+.flag img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.details h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.details h2 {
+  font-size: 20px;
+  font-weight: normal;
+  margin-top: 8px;
+}
+
+.details h3 {
+  font-size: 18px;
+  font-weight: normal;
+  margin-top: 8px;
+}
+
+.details p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.details span {
+  font-weight: bold;
+}
+
+.currency {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.details ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+}
+
+.details ul li {
+  background: #e0e0e0;
+  padding: 8px;
+  margin: 4px 0;
+  border-radius: 4px;
+}
+
+.details-main-panel {
+  flex: 3;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.additional-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.translations {
+  margin-top: 16px;
+  max-height: 800px;
+  overflow-y: auto;
+}
+
+.translation-card {
+  margin: 4px 0;
+}
+
+mat-card {
+  margin-bottom: 16px;
+}
+
+.card-img {
+  width: auto;
+  height: 200px;
+}
+
+@media (max-width: 768px) {
+  .details-container {
+    flex-direction: column;
+  }
+
+  .details-main-panel {
+    margin-left: 0;
+    margin-top: 16px;
+  }
+
+  .details-sidebar, .details-main-panel {
+    max-width: 100%;
+  }
+
+  .details-sidebar {
+    overflow-x: scroll;
+    padding: 12px;
+  }
+
+  .translations {
+    max-height: 400px;
+  }
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -120%);
+}
+
+.admin-actions {
+  display: flex;
+  justify-content: end;
+  margin-right: 14px;
+  gap: 6px;
+}
