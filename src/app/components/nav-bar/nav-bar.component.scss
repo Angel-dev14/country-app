@@ -5,3 +5,9 @@
 a {
   text-decoration: none;
 }
+
+@media (max-width: 424px) {
+  mat-toolbar, button {
+    font-size: 16px;
+  }
+}

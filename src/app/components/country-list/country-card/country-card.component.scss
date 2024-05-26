@@ -99,3 +99,17 @@
 .flag-img {
   height: 40px;
 }
+
+@media (max-width: 424px) {
+  .country-card {
+    position: relative;
+    width: 320px;
+    border-radius: 4px;
+    height: 240px;
+
+    .country-card-content {
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
+}
