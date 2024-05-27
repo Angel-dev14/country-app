@@ -38,7 +38,7 @@ export class CountryDetailsComponent implements OnInit {
       this.#countryService.findCountryDetails(isoCode).subscribe({
         next: (response) => {
           this.countryDetails = response;
-          this.loader.set(true);
+          this.loader.set(false);
         }
       })
     }
