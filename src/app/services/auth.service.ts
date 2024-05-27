@@ -9,31 +9,32 @@ import { Observable, of } from 'rxjs';
 })
 export class AuthService {
 
-  private loggedIn = false;
-  private user: User | null = null;
+  #user: User | null = null;
 
   constructor(
 
   ) { }
 
   login(user: UserRequest): Observable<boolean> {
-    const match = USERS.find(
-      existingUser => existingUser.username === user.username && existingUser.password === user.password);
-    if (match) {
-      this.loggedIn = true;
-      this.user = match;
-      localStorage.setItem('role', this.user.role);
-      return of(true)
-    }
-    return of(false);
+    const match = this.findUserMatch(user);
+    match && this.setUser(match);
+    return of(!!match);
   }
 
-
   logout(): Observable<boolean> {
-    this.loggedIn = false;
-    this.user = null;
+    this.#user = null;
     localStorage.removeItem('role');
     return of(true);
+  }
+
+  setUser(user: User) {
+    this.#user = user;
+    localStorage.setItem('role', this.#user.role);
+  }
+
+  findUserMatch(user: UserRequest): User | undefined {
+    return USERS.find(
+      existingUser => existingUser.username === user.username && existingUser.password === user.password);
   }
 
   isLoggedIn(): boolean {

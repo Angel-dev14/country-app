@@ -7,15 +7,15 @@ import { AuthService } from '../services/auth.service';
 })
 export class HasRoleDirective {
 
-  private readonly _viewContainerRef = inject(ViewContainerRef);
-  private readonly _authService = inject(AuthService);
-  private readonly _templateRef = inject(TemplateRef);
+  readonly #viewContainerRef = inject(ViewContainerRef);
+  readonly #authService = inject(AuthService);
+  readonly #templateRef = inject(TemplateRef);
 
   @Input() set appHasRole(value: string) {
-    if (this._authService.getRole() == value) {
-      this._viewContainerRef.createEmbeddedView(this._templateRef);
+    if (this.#authService.getRole() == value) {
+      this.#viewContainerRef.createEmbeddedView(this.#templateRef);
     } else {
-      this._viewContainerRef.clear();
+      this.#viewContainerRef.clear();
     }
   }
 

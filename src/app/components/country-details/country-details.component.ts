@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CountryDetailsResponse } from '../../domain/country-details.response';
 import { CountryService } from '../../services/country.service';
@@ -23,18 +23,19 @@ import { HasRoleDirective } from '../../directives/has-role.directive';
   ],
   templateUrl: './country-details.component.html',
   styleUrl: './country-details.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CountryDetailsComponent implements OnInit {
 
-  private readonly _route = inject(ActivatedRoute);
-  private readonly _countryService = inject(CountryService);
+  readonly #route = inject(ActivatedRoute);
+  readonly #countryService = inject(CountryService);
   protected countryDetails: CountryDetailsResponse | null = null;
   protected readonly loader = signal(true);
 
   ngOnInit(): void {
-    const isoCode = this._route.snapshot.params['countryIsoCode'];
+    const isoCode = this.#route.snapshot.params['countryIsoCode'];
     if (isoCode) {
-      this._countryService.findCountryDetails(isoCode).subscribe({
+      this.#countryService.findCountryDetails(isoCode).subscribe({
         next: (response) => {
           this.countryDetails = response;
           this.loader.set(true);

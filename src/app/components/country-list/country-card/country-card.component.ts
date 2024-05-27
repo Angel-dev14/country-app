@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -14,18 +14,19 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatTooltip
   ],
   templateUrl: './country-card.component.html',
-  styleUrl: './country-card.component.scss'
+  styleUrl: './country-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CountryCardComponent {
 
   @Input() country!: CountryResponse;
 
-  private readonly _router = inject(Router);
-  private readonly _route = inject(ActivatedRoute);
+  readonly #router = inject(Router);
+  readonly #route = inject(ActivatedRoute);
 
-  navigateCountryDetails() {
-    this._router.navigate([this.country.cca2], {
-      relativeTo: this._route
+  protected navigateCountryDetails() {
+    this.#router.navigate([this.country.cca2], {
+      relativeTo: this.#route
     })
   }
 }

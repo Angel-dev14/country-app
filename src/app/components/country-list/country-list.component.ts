@@ -1,9 +1,10 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { CountryService } from '../../services/country.service';
 import { AsyncPipe } from '@angular/common';
 import { CountryCardComponent } from './country-card/country-card.component';
 import { CountryResponse } from '../../domain/country.response';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { finalize, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-country-list',
@@ -13,24 +14,35 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
     CountryCardComponent,
     MatProgressSpinner
   ],
-  templateUrl: './country-list.component.html',
-  styleUrl: './country-list.component.scss',
+  template: `
+    @if (loading()) {
+      <div class='spinner'>
+        <mat-spinner></mat-spinner>
+      </div>
+    }
+
+    @for (country of countries$ | async; track country.cca2) {
+      <app-country-card
+        [country]='country'
+      ></app-country-card>
+    }
+  `,
+  styles: `
+    :host {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+    }
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CountryListComponent implements OnInit {
+export class CountryListComponent {
 
-  private readonly _countryService = inject(CountryService);
+  readonly #countryService = inject(CountryService);
   protected readonly loading = signal(true);
-  countries: CountryResponse[] = [];
-
-  ngOnInit(): void {
-    this._countryService.findAllCountries().pipe(
-
-    ).subscribe({
-      next: (countries) => {
-        this.countries = countries;
-        this.loading.set(false);
-      }
-    });
-  }
+  countries$: Observable<CountryResponse[]> = this.#countryService.findAllCountries().pipe(
+    finalize(() => this.loading.set(false))
+  );
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
 
@@ -9,8 +9,18 @@ import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
     RouterModule,
     NavBarComponent
   ],
-  templateUrl: './layout.page.html',
-  styleUrl: './layout.page.scss'
+  template: `
+    <app-nav-bar></app-nav-bar>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  `,
+  styles: `
+    main {
+      margin: 1em 0;
+    }
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutPage {
 

@@ -9,17 +9,17 @@ import { CountryResponse } from '../domain/country.response';
 })
 export class CountryService {
 
-  private readonly _http = inject(HttpClient);
-  private readonly _path = 'https://restcountries.com/v3.1/';
+  readonly #http = inject(HttpClient);
+  readonly #path = 'https://restcountries.com/v3.1';
 
   findAllCountries(): Observable<CountryResponse[]> {
     const params = new HttpParams()
       .set('fields', 'name,capital,currencies,region,population,cca2,flags');
-    return this._http.get<CountryResponse[]>(`${this._path}/all`, { params });
+    return this.#http.get<CountryResponse[]>(`${this.#path}/all`, { params });
   }
 
   findCountryDetails(countryIsoCode: string): Observable<CountryDetailsResponse> {
-    return this._http.get<CountryDetailsResponse[]>(`${this._path}/alpha/${countryIsoCode}`).pipe(
+    return this.#http.get<CountryDetailsResponse[]>(`${this.#path}/alpha/${countryIsoCode}`).pipe(
       map(response => response[0]),
       catchError((err) => {
         console.log(err);
